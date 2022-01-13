@@ -4,60 +4,6 @@ import collections
 
 URL = 'https://gorest.co.in/public/v1/'
 
-def selected_method(action):
-
-    if action.methodType == 'get':
-        print("type: ")
-        type = str(input())
-        print("id: (if u don t want a specific user, leave it blank)")
-        id = str(input())
-        response = action.get_method(type, id)
-        return response
-    elif action.methodType == 'post':
-        print("type: ")
-        type = str(input())
-        if type == 'user':
-            print('name: ')
-            name = str(input())
-            print ('email: ')
-            email = str(input())
-            print ('gender: ')
-            gender = str(input())
-            print ('status: ')
-            status = str(input())
-            respons = action.post_method_new_user(name, email, gender, status)
-            return respons
-        elif type == 'post':
-            print("id: ")
-            id = str(input())
-            print('title: ')
-            title = str(input())
-            print('body: ')
-            body = str(input())
-            action.post_method_new_post(id, title, body)
-        elif type == 'comment':
-            print("id: ")
-            id = str(input())
-            print('name: ')
-            name = str(input())
-            print('email: ')
-            email = str(input())
-            print('body: ')
-            body = str(input())
-            action.post_method_new_comment(id, name, email, body)
-        elif type == 'todo':
-            print("id: ")
-            id = str(input())
-            print('user: ')
-            user = str(input())
-            print('title: ')
-            title = str(input())
-            print('status: ')
-            status = str(input())
-    elif action.methodType == 'delete':
-        print('id: ')
-        id = str(input())
-        action.delete_method(id)
 
 
 class REST:
@@ -70,6 +16,60 @@ class REST:
     def set_ids(key, value):
         REST.idsREST[key].append(value)
 
+    def selected_method(self, action):
+
+        if action.methodType == 'get':
+            print("type: ")
+            type = str(input())
+            print("id: (if u don t want a specific user, leave it blank)")
+            id = str(input())
+            response = action.get_method(type, id)
+            return response
+        elif action.methodType == 'post':
+            print("type: ")
+            type = str(input())
+            if type == 'users':
+                print('name: ')
+                name = str(input())
+                print('email: ')
+                email = str(input())
+                print('gender: ')
+                gender = str(input())
+                print('status: ')
+                status = str(input())
+                respons = action.post_method_new_user(name, email, gender, status)
+                return respons
+            elif type == 'posts':
+                print("id: ")
+                id = str(input())
+                print('title: ')
+                title = str(input())
+                print('body: ')
+                body = str(input())
+                action.post_method_new_post(id, title, body)
+            elif type == 'comments':
+                print("id: ")
+                id = str(input())
+                print('name: ')
+                name = str(input())
+                print('email: ')
+                email = str(input())
+                print('body: ')
+                body = str(input())
+                action.post_method_new_comment(id, name, email, body)
+            elif type == 'todos':
+                print("id: ")
+                id = str(input())
+                print('user: ')
+                user = str(input())
+                print('title: ')
+                title = str(input())
+                print('status: ')
+                status = str(input())
+        elif action.methodType == 'delete':
+            print('id: ')
+            id = str(input())
+            action.delete_method(id)
 
 class methods(REST):
 
@@ -151,7 +151,7 @@ class methods(REST):
         # self.ids['user'].append(responseDict['data']['id'])
         self.response = response.status_code
         self.set_status()
-        REST.set_ids('user', responseDict['data']['id'])
+        REST.set_ids('users', responseDict['data']['id'])
         # print(response.content)
         return response
 
@@ -168,7 +168,7 @@ class methods(REST):
         # self.ids['post'].append(responseDict['data']['id'])
         self.response = response.status_code
         self.set_status()
-        REST.set_ids('post', responseDict['data']['id'])
+        REST.set_ids('posts', responseDict['data']['id'])
         # print(response.content)
 
         return 0
@@ -187,7 +187,7 @@ class methods(REST):
         # self.ids['comment'].append(responseDict['data']['id'])
         self.response = response.status_code
         self.set_status()
-        REST.set_ids('comment', responseDict['data']['id'])
+        REST.set_ids('comments', responseDict['data']['id'])
         # print(response.content)
 
         return 0
@@ -206,7 +206,7 @@ class methods(REST):
         # self.ids['todo'].append(responseDict['data']['id'])
         self.response = response.status_code
         self.set_status()
-        REST.set_ids('todo', responseDict['data']['id'])
+        REST.set_ids('todos', responseDict['data']['id'])
 
 
 
@@ -222,17 +222,7 @@ class methods(REST):
             type=(str(input()))
 
 
-        if type == 'users':
-            response = requests.delete(URL + 'users/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'posts':
-            requests.delete(URL + 'posts/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'comments':
-            requests.delete(URL + 'comments/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'todos':
-            requests.delete(URL + 'todos/' + id, verify=False, headers={
+        response = requests.delete(URL + type +'/' + id, verify=False, headers={
                 'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
 
         self.response = response.status_code
@@ -240,18 +230,14 @@ class methods(REST):
         # print(response.content)
 
     def delete_all(self, type, id):
-        if type == 'user':
-            response = requests.delete(URL + 'users/' + id, verify=False, headers={
+
+
+        response = requests.delete(URL + type +'/' + id, verify=False, headers={
                 'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'post':
-            requests.delete(URL + 'posts/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'comment':
-            requests.delete(URL + 'comments/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
-        elif type == 'todo':
-            requests.delete(URL + 'todos/' + id, verify=False, headers={
-                'Authorization': 'Bearer cfc389c1c50611ea6166ddd106f643feb7af468119a3bcb0f7851872dc1e6755'})
+
+        self.response = response.status_code
+        self.set_status()
+
 
 
 
@@ -267,7 +253,7 @@ while (ok == 1):
     print('Method:')
     methodType = str(input())
     action = methods(methodType)
-    selected_method(action)
+    rest_obj.selected_method(action)
     print('id-uri: ', rest_obj.idsREST)
     print('ok: ')
     ok = int(input())
@@ -280,7 +266,7 @@ if delete == 'y':
             action.delete_all(key, str(value))
 print ('verify: ')
 
-action.get_method('users', str(rest_obj.idsREST['user'][0]))
+action.get_method('users', str(rest_obj.idsREST['users'][0]))
 
 print("the script has reach the end")
 
