@@ -1,0 +1,144 @@
+Test Case 1 	
+"1. Create one user
+2. Create a post - a comment and a todo.
+3. Verify each element by ""GET"" request (response code).
+4. Delete todo - comment - post.
+5. Verify if they were deleted (response code from ""DEL"" request ori trying a ""GET"" request)
+6. Delete user
+7. Veirfy if the user was deleted"			
+				
+				
+				
+				
+				
+				
+				
+				
+Test Case 2	
+"1. Create two or more users.
+2. Create posts, comments and todos for each
+3. Verify each element
+4. Delete one or more users
+5. Verify if posts, comments or todos for that user still exist
+6. Delete remaining users
+7. Verify if posts comments or todos are deleted as well"			
+				
+				
+				
+				
+				
+				
+				
+				
+Test Case 3
+"1. Create a post - commnet todo for an existing user
+2. Verify by ""GET"" request
+3. Detele todo - comment - post
+4. Verify by ""get"" request
+5. Delete user
+6. Verify if the user was deleted"			
+				
+				
+				
+				
+				
+				
+				
+Test Case 4
+"1. Create posts - comments - todos for existing users 
+2. Verify by ""GET"" request 
+3. Detele them 
+4. Verify by ""GET"" request"			
+				
+				
+				
+				
+				
+				
+				
+Test Case 5	
+1. ""GET"" some random posts - comments - todos which aleardy exists
+2. Delete them
+3. Verify by ""GET"" request"			
+				
+				
+				
+				
+				
+				
+				
+				
+Test Case 6	
+1. ""GET"" some random users
+2. Delete them
+3. Verify by ""GET"" request"			
+				
+				
+				
+				
+				
+				
+				
+Test Case 7 
+"1. Create a user with an email that already exist.
+2. Verify the response code "			
+				
+				
+				
+				
+				
+				
+				
+Test Case 8	
+1. Create an comment with an email that already exist.
+2. Verify the response code
+		
+				
+				
+				
+				
+				
+				
+Test Case 9
+"1. Create an user with an invalid email (without ""@"")
+2. Verify the response code"			
+				
+				
+				
+				
+				
+Test Case 10
+"1. Create a post assigned to a non-existent user id
+2. Verify the response code "			
+				
+				
+				
+				
+				
+Test Case 11
+"1. Create a comment assigned to a non-existent post id 
+2. verify the response code"			
+				
+				
+				
+				
+Test Case 12
+Same as 10-11 but for todos			
+
+
+
+Test Case 13	
+1. Delete a resource that dosen't exist (user/post/comment/todo)
+2. Verify the response code"			
+				
+				
+				
+				
+Test Case 14 
+"1. Try to post / delete without authentication token
+2. Verify the response code"			
+				
+				
+
+
+Pentru toate testcase-urile ar trebui sa verific si raspunsul primit de la libraria "requests" ? Cum ar fi: "print (request.get(…))"
