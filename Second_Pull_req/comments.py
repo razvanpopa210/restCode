@@ -10,8 +10,7 @@ URL = 'https://gorest.co.in/public/v1/'
 
 class Comments(methods.methods):
 
-    def __init__(self, name=None, email=None, body=None, post_id=None, comment_id=None):
-
+    def __init__(self, name, email, body, post_id=None, comment_id=None):
 
         super().__init__()
 

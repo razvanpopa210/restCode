@@ -10,9 +10,7 @@ URL = 'https://gorest.co.in/public/v1/'
 
 class Posts(methods.methods):
 
-
-    def __init__(self, title=None, body=None, user_id=None, post_id=None):
-
+    def __init__(self, title, body, user_id = None, post_id=None):
 
         super().__init__()
         self.user_id = user_id

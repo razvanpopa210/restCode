@@ -20,6 +20,7 @@ class Integrator:
         self.users = []
         self.posts = []
         self.comments = []
+
         self.todos = []
 
     def print_met(self):
@@ -58,21 +59,6 @@ class Integrator:
             if var.get('comments'):
                 self.comments_handle(var.get('comments'), new_post.responseDict.get('data').get('id'))
 
-    def todos_handle(self, user_todos=None,user_id=None):
-        if user_todos == None:
-            user_todos = self.data.get('todos')
-        if user_id:
-            user_id = str(user_id)
-        else:
-            user_id = user_todos.get('id')
-
-        for key in user_todos:
-            var = user_todos.get(key)
-            new_todos = todos.Todos(var.get('title'), var.get('due_on'), var.get('status'), str(user_id))
-            new_todos.post_method()
-            self.todos.append(new_todos)
-
-            
     def users_handle(self):
         users_dict = self.data.get('users')
         for key in users_dict:
@@ -84,7 +70,7 @@ class Integrator:
             if var.get('posts'):
                 self.posts_handle(var.get('posts'), new_object.responseDict.get('data').get('id'))
             if var.get('todos'):
-                self.todos_handle(var.get('todos'), new_object.responseDict.get('data').get('id'))
+                pass
 
     def analyse_data(self):
         self.data_setter()
@@ -95,6 +81,4 @@ class Integrator:
             self.posts_handle()
         elif self.data('comments'):
             self.comments_handle()
-        elif self.data('todos'):
-            self.todos_handle()
 
