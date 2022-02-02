@@ -10,7 +10,7 @@ URL = 'https://gorest.co.in/public/v1/'
 
 class Users(methods.methods):
 
-    def __init__(self, name, email, gender, status, id=None):
+    def __init__(self, name=None, email=None, gender=None, status=None, id=None):
 
         super().__init__()
 

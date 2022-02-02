@@ -11,7 +11,6 @@ import comments
 
 path = 'tomlfiles/users.toml'
 
-
 class Integrator:
 
     def __init__(self, path):
@@ -19,17 +18,18 @@ class Integrator:
         self.data = {}
         self.users = []
         self.posts = []
-        self.comments = []
+        self.comments= []
+        
         self.todos = []
 
     def print_met(self):
-        print(self.data)
+        print (self.data)
 
     def data_setter(self):
         self.data = toml.load(self.path)
 
     def comments_handle(self, user_comments=None, post_id=None):
-        if user_comments == None:
+        if user_comments==None:
             user_comments = self.data.get('commnets')
         if post_id:
             post_id = str(post_id)
@@ -42,7 +42,7 @@ class Integrator:
             self.comments.append(new_comment)
 
     def posts_handle(self, user_posts=None, user_id=None):
-
+        
         if user_posts == None:
             user_posts = self.data.get('posts')
         if user_id:
@@ -58,21 +58,7 @@ class Integrator:
             if var.get('comments'):
                 self.comments_handle(var.get('comments'), new_post.responseDict.get('data').get('id'))
 
-    def todos_handle(self, user_todos=None,user_id=None):
-        if user_todos == None:
-            user_todos = self.data.get('todos')
-        if user_id:
-            user_id = str(user_id)
-        else:
-            user_id = user_todos.get('id')
 
-        for key in user_todos:
-            var = user_todos.get(key)
-            new_todos = todos.Todos(var.get('title'), var.get('due_on'), var.get('status'), str(user_id))
-            new_todos.post_method()
-            self.todos.append(new_todos)
-
-            
     def users_handle(self):
         users_dict = self.data.get('users')
         for key in users_dict:
@@ -82,9 +68,10 @@ class Integrator:
             self.users.append(new_object)
 
             if var.get('posts'):
-                self.posts_handle(var.get('posts'), new_object.responseDict.get('data').get('id'))
+                self.posts_handle(var.get('posts'),new_object.responseDict.get('data').get('id'))
             if var.get('todos'):
-                self.todos_handle(var.get('todos'), new_object.responseDict.get('data').get('id'))
+                pass
+
 
     def analyse_data(self):
         self.data_setter()
@@ -95,6 +82,4 @@ class Integrator:
             self.posts_handle()
         elif self.data('comments'):
             self.comments_handle()
-        elif self.data('todos'):
-            self.todos_handle()
-
+        

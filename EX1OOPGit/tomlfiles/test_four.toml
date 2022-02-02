@@ -1,0 +1,15 @@
+[users]
+    [users.user1]
+        name = 'tom3'
+        email = 'tomford22elete23@yahoo.com'
+        gender = 'male'
+        status = 'active'
+        [users.user1.posts]
+            [users.user1.posts.post1]
+                title = 'best post'
+                body = 'best body post'
+                [users.user1.posts.post1.comments]
+                    [users.user1.posts.post1.comments.comments1]
+                        name = 'best comment'
+                        email = 'email@email.com'
+                        body = 'body for comment'
