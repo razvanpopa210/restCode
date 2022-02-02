@@ -1,0 +1,6 @@
+[users]
+    [users.user1]
+        name = 'tom3'
+        email = '1@yahoo.com'
+        gender = 'male'
+        status = 'active'

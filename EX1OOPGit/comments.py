@@ -10,11 +10,11 @@ URL = 'https://gorest.co.in/public/v1/'
 
 class Comments(methods.methods):
 
-    def __init__(self, name, email, body, id=None, post_id=None):
+    def __init__(self, name=None, email=None, body=None, post_id=None, comment_id=None):
 
         super().__init__()
 
-        self.id = id
+        self.cooment_id = comment_id
         self.post_id = post_id
         self.name = name
         self.email = email
@@ -23,8 +23,10 @@ class Comments(methods.methods):
 
     def get_setter(self):
 
-        if self.id:
-            self.url = 'https://gorest.co.in/public/v1/comments/' + self.id
+        if self.comment_id:
+            self.url = 'https://gorest.co.in/public/v1/comments/' + self.comment_id
+        elif self.post_id:
+            self.url = 'https://gorest.co.in/public/v1/posts/' + self.post_id + '/comments'
         else:
             self.url = 'https://gorest.co.in/public/v1/comments/'
 
@@ -34,7 +36,7 @@ class Comments(methods.methods):
 
     def post_setter(self):
 
-        data = {
+        self.data = {
             'name':self.name,
             'email':self.email,
             'body':self.body
@@ -42,7 +44,7 @@ class Comments(methods.methods):
 
         self.tp = 'comments'
 
-        self.url = 'https://gorest.co.in/public/v1/posts/' + self.id + '/comments'
+        self.url = 'https://gorest.co.in/public/v1/posts/' + self.post_id + '/comments'
 
 
     def del_setter(self):

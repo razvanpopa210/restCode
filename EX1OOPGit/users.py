@@ -10,15 +10,16 @@ URL = 'https://gorest.co.in/public/v1/'
 
 class Users(methods.methods):
 
-    def __init__(self, name, email, gender, status, id=None):
+    def __init__(self, name=None, email=None, gender=None, status=None, id=None):
 
         super().__init__()
-        self.id = id
+
         # self.email = '12'
         self.name = name
         self.email = email
         self.gender = gender
         self.status = status
+        self.id = id
 
     def get_setter(self):
         if self.id:
@@ -39,7 +40,7 @@ class Users(methods.methods):
 
 
     def del_setter(self):
-        self.url = 'https://gorest.co.in/public/v1/users/' + self.id
+        self.url = 'https://gorest.co.in/public/v1/users/' + str(self.id)
 
 
 
