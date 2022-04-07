@@ -139,6 +139,3 @@ Test Case 14
 2. Verify the response code"			
 				
 				
-
-
-Pentru toate testcase-urile ar trebui sa verific si raspunsul primit de la libraria "requests" ? Cum ar fi: "print (request.get(…))"
